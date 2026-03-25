@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>健康知識站｜專業醫學衛教平台</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #F9F5EE;
+      --warm-white: #FDFAF5;
+      --sage: #6B8F71;
+      --deep-sage: #3E5E44;
+      --teal: #2D7D8A;
+      --deep-teal: #1A5260;
+      --terracotta: #C4714A;
+      --gold: #C9A84C;
+      --charcoal: #2C2C2C;
+      --medium: #5A5A5A;
+      --light: #9A9A9A;
+      --border: #E2DDD5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--warm-white);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(253, 250, 245, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--deep-teal);
+      letter-spacing: 0.05em;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .nav-logo span { color: var(--terracotta); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.88rem;
+      color: var(--medium);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta {
+      background: var(--deep-teal);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 2px;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--teal); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 3rem 6rem 4rem;
+      position: relative; z-index: 2;
+    }
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      color: var(--terracotta);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 30px; height: 1px;
+      background: var(--terracotta);
+    }
+    .hero-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--deep-teal);
+      font-family: 'DM Serif Display', serif;
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--medium);
+      max-width: 480px;
+      margin-bottom: 3rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--deep-teal);
+      color: #fff;
+      padding: 1rem 2.2rem;
+      border: none;
+      border-radius: 2px;
+      font-size: 0.92rem;
+      font-family: 'Noto Sans TC', sans-serif;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover {
+      background: var(--teal);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(45,125,138,0.3);
+    }
+    .btn-secondary {
+      color: var(--teal);
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: gap 0.2s;
+    }
+    .btn-secondary:hover { gap: 0.9rem; }
+
+    .hero-right {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-visual {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #EAF5F0 0%, #D4EBE8 50%, #EBF2EE 100%);
+      position: relative; overflow: hidden;
+    }
+    /* decorative botanical illustration using CSS */
+    .leaf {
+      position: absolute;
+      border-radius: 50% 0 50% 0;
+      opacity: 0.18;
+    }
+    .leaf-1 { width: 200px; height: 300px; background: var(--sage); top: 10%; left: 10%; transform: rotate(-30deg); animation: sway 6s ease-in-out infinite; }
+    .leaf-2 { width: 150px; height: 220px; background: var(--deep-teal); top: 30%; right: 15%; transform: rotate(50deg); animation: sway 8s ease-in-out infinite reverse; }
+    .leaf-3 { width: 120px; height: 180px; background: var(--sage); bottom: 20%; left: 25%; transform: rotate(10deg); animation: sway 7s ease-in-out infinite; }
+    @keyframes sway {
+      0%,100% { transform: rotate(-30deg) scale(1); }
+      50% { transform: rotate(-25deg) scale(1.03); }
+    }
+
+    .hero-card {
+      position: absolute;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      padding: 1.8rem;
+      animation: floatUp 0.8s ease forwards;
+      opacity: 0;
+    }
+    .hero-card-main {
+      width: 280px; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation-delay: 0.3s;
+    }
+    .hero-card-stat {
+      width: 160px;
+      padding: 1.2rem 1.5rem;
+    }
+    .hc-top { bottom: 18%; right: 8%; animation-delay: 0.6s; }
+    .hc-mid { top: 15%; left: 5%; animation-delay: 0.9s; }
+
+    @keyframes floatUp {
+      from { opacity: 0; transform: translate(-50%, -40%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+    .hero-card-main .card-label {
+      font-size: 0.72rem; color: var(--light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.8rem;
+    }
+    .hero-card-main .card-title {
+      font-family: 'Noto Serif TC', serif; font-size: 1.1rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.5rem;
+    }
+    .hero-card-main .card-desc { font-size: 0.82rem; color: var(--medium); line-height: 1.6; }
+    .card-tag {
+      display: inline-block;
+      background: #EAF5F0; color: var(--deep-sage);
+      font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 20px; margin-top: 0.8rem;
+    }
+    .hero-card-stat .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: var(--deep-teal); line-height: 1;
+    }
+    .hero-card-stat .stat-label { font-size: 0.75rem; color: var(--medium); margin-top: 0.3rem; }
+
+    /* ── MARQUEE TICKER ── */
+    .ticker {
+      background: var(--deep-teal);
+      color: #fff;
+      padding: 0.75rem 0;
+      overflow: hidden;
+    }
+    .ticker-track {
+      display: flex; gap: 4rem;
+      animation: ticker 25s linear infinite;
+      white-space: nowrap;
+    }
+    .ticker-item { font-size: 0.82rem; letter-spacing: 0.1em; display: flex; align-items: center; gap: 0.6rem; }
+    .ticker-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 4rem; }
+    .section-label {
+      font-size: 0.78rem; letter-spacing: 0.2em; color: var(--terracotta);
+      text-transform: uppercase; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .section-label::after { content: ''; flex: 0 0 25px; height: 1px; background: var(--terracotta); }
+    .section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700; line-height: 1.3; color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+    .section-sub { font-size: 1rem; color: var(--medium); line-height: 1.8; max-width: 540px; }
+
+    /* ── CATEGORIES ── */
+    .categories { background: var(--cream); }
+    .cat-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .cat-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 2rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .cat-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--teal);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .cat-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+    .cat-card:hover::before { transform: scaleX(1); }
+    .cat-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.2rem;
+    }
+    .cat-title { font-family: 'Noto Serif TC', serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .cat-count { font-size: 0.8rem; color: var(--light); }
+
+    /* ── FEATURED ARTICLES ── */
+    .featured { background: var(--warm-white); }
+    .articles-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+    .articles-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+    .article-hero { background: var(--cream); border-radius: 3px; overflow: hidden; cursor: pointer; transition: box-shadow 0.3s; }
+    .article-hero:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+    .article-img-hero {
+      height: 280px;
+      background: linear-gradient(135deg, #C8E6C9, #A5D6A7, #80CBC4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; position: relative;
+    }
+    .article-img-hero .art-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.3));
+    }
+    .article-body { padding: 2rem; }
+    .article-meta { display: flex; gap: 1rem; align-items: center; margin-bottom: 0.8rem; }
+    .article-tag {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      background: #EAF5F0; color: var(--deep-sage);
+      padding: 0.2rem 0.7rem; border-radius: 20px;
+    }
+    .article-date { font-size: 0.78rem; color: var(--light); }
+    .article-title { font-family: 'Noto Serif TC', serif; font-size: 1.25rem; font-weight: 700; line-height: 1.5; margin-bottom: 0.6rem; }
+    .article-excerpt { font-size: 0.88rem; color: var(--medium); line-height: 1.8; }
+
+    .articles-side { display: flex; flex-direction: column; gap: 1.5rem; }
+    .article-small {
+      display: flex; gap: 1rem;
+      padding: 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .article-small:hover { background: var(--cream); border-color: var(--teal); }
+    .article-img-small {
+      width: 80px; height: 80px; flex-shrink: 0; border-radius: 2px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+    }
+    .article-small .article-title { font-size: 0.92rem; }
+
+    /* ── STATS BAND ── */
+    .stats-band {
+      background: var(--deep-teal);
+      padding: 4rem;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2rem; text-align: center;
+    }
+    .stat-item .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem; color: #fff; line-height: 1;
+    }
+    .stat-item .stat-unit { font-size: 1.2rem; color: var(--gold); }
+    .stat-item .stat-desc { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 0.5rem; letter-spacing: 0.05em; }
+
+    /* ── TOOLS ── */
+    .tools { background: var(--cream); }
+    .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+    .tool-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 2.5rem 2rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      cursor: pointer; transition: all 0.3s;
+    }
+    .tool-card:hover { box-shadow: 0 16px 40px rgba(0,0,0,0.1); border-color: var(--teal); }
+    .tool-icon { font-size: 2.2rem; }
+    .tool-title { font-family: 'Noto Serif TC', serif; font-size: 1.15rem; font-weight: 600; }
+    .tool-desc { font-size: 0.88rem; color: var(--medium); line-height: 1.7; }
+    .tool-link { font-size: 0.82rem; color: var(--teal); display: flex; align-items: center; gap: 0.4rem; margin-top: auto; }
+
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      background: var(--warm-white);
+      text-align: center; padding: 6rem 4rem;
+    }
+    .newsletter-inner {
+      max-width: 560px; margin: 0 auto;
+    }
+    .newsletter-form { display: flex; gap: 0.8rem; margin-top: 2.5rem; }
+    .newsletter-form input {
+      flex: 1; padding: 0.85rem 1.2rem;
+      border: 1px solid var(--border); border-radius: 2px;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 0.9rem; color: var(--charcoal);
+      background: #fff; outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-form input:focus { border-color: var(--teal); }
+    .newsletter-form button {
+      background: var(--terracotta); color: #fff;
+      border: none; padding: 0.85rem 1.8rem;
+      border-radius: 2px; font-family: 'Noto Sans TC', sans-serif;
+      font-size: 0.9rem; cursor: pointer;
+      transition: background 0.2s; white-space: nowrap;
+    }
+    .newsletter-form button:hover { background: #b5623d; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal); color: rgba(255,255,255,0.6);
+      padding: 4rem 4rem 2rem;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-brand { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem; }
+    .footer-tagline { font-size: 0.85rem; line-height: 1.7; }
+    .footer-col h4 { color: rgba(255,255,255,0.9); font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col ul a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+    .footer-col ul a:hover { color: rgba(255,255,255,0.9); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 1.5rem; font-size: 0.78rem;
+    }
+    .disclaimer { font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-top: 1rem; line-height: 1.6; }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 1rem 2rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 350px; }
+      .cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .articles-grid { grid-template-columns: 1fr; }
+      .stats-band { grid-template-columns: repeat(2, 1fr); }
+      .tools-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      section { padding: 4rem 1.5rem; }
+      nav { padding: 1rem 1.5rem; }
+      .cat-grid { grid-template-columns: 1fr; }
+      .stats-band { padding: 3rem 1.5rem; grid-template-columns: repeat(2, 1fr); }
+      .newsletter-form { flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">🩺 健康知識站<span>．</span></div>
+    <ul class="nav-links">
+      <li><a href="#">疾病百科</a></li>
+      <li><a href="#">用藥指南</a></li>
+      <li><a href="#">保健工具</a></li>
+      <li><a href="#">名醫專欄</a></li>
+      <li><a href="#">健康新知</a></li>
+    </ul>
+    <button class="nav-cta">免費會員</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" style="padding: 0;">
+    <div class="hero-left">
+      <div class="hero-eyebrow">專業醫學衛教平台</div>
+      <h1 class="hero-title">守護您的健康<br/>從<em>正確知識</em>開始</h1>
+      <p class="hero-desc">由醫師與醫療專家審閱，提供最正確、最易懂的健康資訊。從疾病預防到慢性病管理，我們陪您每一步。</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">探索健康主題</a>
+        <a href="#" class="btn-secondary">線上問症狀 →</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-visual">
+        <div class="leaf leaf-1"></div>
+        <div class="leaf leaf-2"></div>
+        <div class="leaf leaf-3"></div>
+
+        <div class="hero-card hero-card-main" style="animation: fadeSlide 0.8s 0.3s ease forwards; opacity:0;">
+          <div class="card-label">今日推薦</div>
+          <div class="card-title">糖尿病飲食管理完整指南</div>
+          <div class="card-desc">了解升糖指數、餐盤比例、外食技巧，讓血糖穩定不再是難題。</div>
+          <span class="card-tag">🩸 內分泌</span>
+        </div>
+
+        <div class="hero-card hero-card-stat hc-top" style="animation: fadeSlide2 0.8s 0.6s ease forwards; opacity:0; position:absolute; bottom:18%; right:8%; transform: none;">
+          <div class="stat-num">500<span style="font-size:1rem;color:var(--gold)">+</span></div>
+          <div class="stat-label">醫師審閱文章</div>
+        </div>
+
+        <div class="hero-card hero-card-stat hc-mid" style="animation: fadeSlide3 0.8s 0.9s ease forwards; opacity:0; position:absolute; top:15%; left:5%; transform: none;">
+          <div class="stat-num">98<span style="font-size:1rem;color:var(--gold)">%</span></div>
+          <div class="stat-label">使用者滿意度</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="ticker-dot"></span>【最新消息】秋冬流感疫苗接種開始，建議及早施打</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>【健康提醒】每日飲水量建議與正確補水時機</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>【醫師解答】居家篩檢結果如何判讀？</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>【衛教專題】慢性腎臟病的飲食限制與注意事項</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>【最新消息】秋冬流感疫苗接種開始，建議及早施打</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>【健康提醒】每日飲水量建議與正確補水時機</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>【醫師解答】居家篩檢結果如何判讀？</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>【衛教專題】慢性腎臟病的飲食限制與注意事項</span>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="categories fade-in">
+    <div class="section-label">健康分類</div>
+    <h2 class="section-title">找到您關心的<br/>健康主題</h2>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <div class="cat-icon" style="background:#EAF5F0">❤️</div>
+        <div class="cat-title">心血管健康</div>
+        <div class="cat-count">128 篇文章</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon" style="background:#FFF3E0">🦴</div>
+        <div class="cat-title">骨骼與關節</div>
+        <div class="cat-count">94 篇文章</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon" style="background:#E3F2FD">🧠</div>
+        <div class="cat-title">神經與心理</div>
+        <div class="cat-count">76 篇文章</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon" style="background:#FCE4EC">🩸</div>
+        <div class="cat-title">內分泌代謝</div>
+        <div class="cat-count">112 篇文章</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon" style="background:#E8F5E9">🌿</div>
+        <div class="cat-title">消化系統</div>
+        <div class="cat-count">83 篇文章</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon" style="background:#EDE7F6">🫁</div>
+        <div class="cat-title">呼吸道疾病</div>
+        <div class="cat-count">65 篇文章</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon" style="background:#F3E5F5">👶</div>
+        <div class="cat-title">兒童健康</div>
+        <div class="cat-count">99 篇文章</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon" style="background:#E0F7FA">👵</div>
+        <div class="cat-title">銀髮族保健</div>
+        <div class="cat-count">71 篇文章</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED -->
+  <section class="featured fade-in">
+    <div class="articles-header">
+      <div>
+        <div class="section-label">精選文章</div>
+        <h2 class="section-title">醫師推薦必讀</h2>
+      </div>
+      <a href="#" style="font-size:0.88rem;color:var(--teal);text-decoration:none;">查看全部文章 →</a>
+    </div>
+    <div class="articles-grid">
+      <div class="article-hero">
+        <div class="article-img-hero" style="background: linear-gradient(135deg,#B2DFDB,#80CBC4,#4DB6AC);">
+          <span style="font-size:5rem;position:relative;z-index:1;">🫀</span>
+          <div class="art-overlay"></div>
+        </div>
+        <div class="article-body">
+          <div class="article-meta">
+            <span class="article-tag">心血管</span>
+            <span class="article-date">2025.03.20</span>
+          </div>
+          <div class="article-title">高血壓患者的日常管理：從飲食、運動到用藥的全方位指引</div>
+          <div class="article-excerpt">高血壓被稱為「沉默殺手」，許多患者長期無症狀卻已造成器官損傷。本文由心臟科醫師撰寫，帶您了解有效控制血壓的生活策略與用藥原則……</div>
+        </div>
+      </div>
+      <div class="articles-side">
+        <div class="article-small">
+          <div class="article-img-small" style="background:#FFF3E0;">🦷</div>
+          <div>
+            <div class="article-meta"><span class="article-tag">口腔保健</span></div>
+            <div class="article-title">牙周病與全身健康的關係，您不可不知</div>
+          </div>
+        </div>
+        <div class="article-small">
+          <div class="article-img-small" style="background:#E8F5E9;">💊</div>
+          <div>
+            <div class="article-meta"><span class="article-tag">用藥安全</span></div>
+            <div class="article-title">服藥有禁忌：這些食物與藥物不能一起吃</div>
+          </div>
+        </div>
+        <div class="article-small">
+          <div class="article-img-small" style="background:#EDE7F6;">🧘</div>
+          <div>
+            <div class="article-meta"><span class="article-tag">身心健康</span></div>
+            <div class="article-title">長期焦慮的五個早期警訊與求助時機</div>
+          </div>
+        </div>
+        <div class="article-small">
+          <div class="article-img-small" style="background:#FCE4EC;">🌸</div>
+          <div>
+            <div class="article-meta"><span class="article-tag">婦女健康</span></div>
+            <div class="article-title">子宮肌瘤：症狀判斷與治療選擇全解析</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <div class="stats-band fade-in">
+    <div class="stat-item">
+      <div class="stat-num">50<span class="stat-unit">萬+</span></div>
+      <div class="stat-desc">每月活躍讀者</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">320<span class="stat-unit">+</span></div>
+      <div class="stat-desc">合作醫療專家</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2000<span class="stat-unit">+</span></div>
+      <div class="stat-desc">衛教文章總數</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">12<span class="stat-unit">年</span></div>
+      <div class="stat-desc">專業服務年資</div>
+    </div>
+  </div>
+
+  <!-- TOOLS -->
+  <section class="tools fade-in">
+    <div class="section-label">實用工具</div>
+    <h2 class="section-title">健康自我評估</h2>
+    <p class="section-sub">快速了解您目前的健康狀況，適時尋求醫療協助。</p>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-icon">⚖️</div>
+        <div class="tool-title">BMI 體重評估</div>
+        <div class="tool-desc">輸入身高體重，快速計算 BMI 值並了解健康體重範圍建議。</div>
+        <div class="tool-link">立即測量 →</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🩺</div>
+        <div class="tool-title">症狀自我檢測</div>
+        <div class="tool-desc">依症狀描述，初步了解可能的健康問題，並獲得就醫建議。</div>
+        <div class="tool-link">開始檢測 →</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">💉</div>
+        <div class="tool-title">疫苗接種查詢</div>
+        <div class="tool-desc">查詢各年齡層建議疫苗接種時程，掌握防疫最新資訊。</div>
+        <div class="tool-link">查詢時程 →</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter fade-in">
+    <div class="newsletter-inner">
+      <div class="section-label" style="justify-content:center;">健康電子報</div>
+      <h2 class="section-title">每週健康知識<br/>直送您的信箱</h2>
+      <p style="color:var(--medium);font-size:0.95rem;line-height:1.8;margin-top:0.5rem;">由醫師精選本週最重要的健康資訊，每週一封，免費訂閱。</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="請輸入您的電子郵件"/>
+        <button>免費訂閱</button>
+      </div>
+      <p style="font-size:0.75rem;color:var(--light);margin-top:1rem;">我們尊重您的隱私，隨時可取消訂閱。</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">🩺 健康知識站</div>
+        <div class="footer-tagline">由醫療專家審閱，提供正確、安全、易懂的健康衛教資訊。我們相信每個人都有權利獲得高品質的健康知識。</div>
+      </div>
+      <div class="footer-col">
+        <h4>健康主題</h4>
+        <ul>
+          <li><a href="#">心血管疾病</a></li>
+          <li><a href="#">糖尿病衛教</a></li>
+          <li><a href="#">癌症知識</a></li>
+          <li><a href="#">婦幼保健</a></li>
+          <li><a href="#">銀髮族健康</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>服務項目</h4>
+        <ul>
+          <li><a href="#">症狀查詢</a></li>
+          <li><a href="#">藥品資料庫</a></li>
+          <li><a href="#">醫院搜尋</a></li>
+          <li><a href="#">名醫專欄</a></li>
+          <li><a href="#">線上問診</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>關於我們</h4>
+        <ul>
+          <li><a href="#">平台介紹</a></li>
+          <li><a href="#">醫療顧問團隊</a></li>
+          <li><a href="#">內容審閱政策</a></li>
+          <li><a href="#">隱私政策</a></li>
+          <li><a href="#">聯絡我們</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaimer">
+      ⚠️ 本平台內容僅供健康教育與資訊參考之用，不構成醫療診斷或治療建議。如有身體不適或健康疑慮，請即時就醫並諮詢合格醫療人員。
+    </p>
+    <div class="footer-bottom">
+      <span>© 2025 健康知識站 版權所有</span>
+      <span>由醫師團隊審閱 ✓</span>
+    </div>
+  </footer>
+
+  <style>
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translate(-50%, -40%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+    @keyframes fadeSlide2 {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeSlide3 {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <script>
+    // Intersection observer for fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
