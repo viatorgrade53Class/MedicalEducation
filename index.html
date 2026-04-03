@@ -307,6 +307,52 @@
       display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
     }
     .article-small .article-title { font-size: 0.92rem; }
+    /* ── VIDEO GALLERY ── */
+    .video-gallery { background: var(--cream); }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .video-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .video-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    }
+    .video-embed {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+    .video-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .video-label {
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      color: var(--medium);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .video-label-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      flex-shrink: 0;
+    }
     /* ── STATS BAND ── */
     .stats-band {
       background: var(--deep-teal);
@@ -321,7 +367,7 @@
     .stat-item .stat-unit { font-size: 1.2rem; color: var(--gold); }
     .stat-item .stat-desc { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 0.5rem; letter-spacing: 0.05em; }
     /* ── MEMORIES / TOOLS ── */
-    .tools { background: var(--cream); }
+    .tools { background: var(--warm-white); }
     .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
     .tool-card {
       background: #fff;
@@ -338,7 +384,7 @@
     .tool-link { font-size: 0.82rem; color: var(--teal); display: flex; align-items: center; gap: 0.4rem; margin-top: auto; }
     /* ── NEWSLETTER ── */
     .newsletter {
-      background: var(--warm-white);
+      background: var(--cream);
       text-align: center; padding: 6rem 4rem;
     }
     .newsletter-inner { max-width: 560px; margin: 0 auto; }
@@ -396,6 +442,7 @@
       .stats-band { grid-template-columns: repeat(2, 1fr); }
       .tools-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; }
+      .video-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 640px) {
       section { padding: 4rem 1.5rem; }
@@ -404,6 +451,7 @@
       .stats-band { padding: 3rem 1.5rem; grid-template-columns: repeat(2, 1fr); }
       .newsletter-form { flex-direction: column; }
       .footer-top { grid-template-columns: 1fr; }
+      .video-grid { grid-template-columns: 1fr; }
     }
     @keyframes fadeSlide {
       from { opacity: 0; transform: translate(-50%, -40%); }
@@ -470,8 +518,7 @@
   <!-- TICKER -->
   <div class="ticker">
     <div class="ticker-track">
-      <span class="ticker-item"><span class="ticker-dot"></span>【關於健康】
-      <a href=".MedicalEducation.html" class="article-hero"></span>
+      <span class="ticker-item"><span class="ticker-dot"></span>【最新消息】2026/03/22 全鴨坊同學會，歡迎報名參加！</span>
       <span class="ticker-item"><span class="ticker-dot"></span>【活動提醒】請同學們準時出席，共敘舊情</span>
       <span class="ticker-item"><span class="ticker-dot"></span>【同學動態】歡迎提供近況更新與聯絡資訊</span>
       <span class="ticker-item"><span class="ticker-dot"></span>【相簿開放】畢業照、旅遊照歡迎上傳分享</span>
@@ -588,6 +635,79 @@
     </div>
   </section>
 
+  <!-- VIDEO GALLERY -->
+  <section id="videos" class="video-gallery fade-in">
+    <div class="articles-header">
+      <div>
+        <div class="section-label">同學會回憶</div>
+        <h2 class="section-title">精彩活動影片</h2>
+      </div>
+    </div>
+    <p style="color:var(--medium);font-size:0.95rem;line-height:1.8;margin-top:-1.5rem;margin-bottom:0;">記錄每一個珍貴時刻，重溫同窗情誼的美好。</p>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/aifGd1GA3iI" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-label"><span class="video-label-dot"></span>同學會活動影片</div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/F55_iqyxK-M" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-label"><span class="video-label-dot"></span>同學會活動影片</div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/P3N8EyJw1qM" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-label"><span class="video-label-dot"></span>同學會活動影片</div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/lnF1u0AqatY" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-label"><span class="video-label-dot"></span>同學會活動影片</div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/KyT47MuwctY" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-label"><span class="video-label-dot"></span>同學會活動影片</div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/esrJuW9OJvo" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-label"><span class="video-label-dot"></span>同學會活動影片</div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/mwo9Kgk7AUQ" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-label"><span class="video-label-dot"></span>同學會活動影片</div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/Wew1kNd7THw" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-label"><span class="video-label-dot"></span>同學會活動影片</div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/civ6y6CTwvc" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-label"><span class="video-label-dot"></span>同學會活動影片</div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/qqz4Xu_-E9M" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-label"><span class="video-label-dot"></span>同學會活動影片</div>
+      </div>
+    </div>
+  </section>
+
   <!-- STATS BAND -->
   <div class="stats-band fade-in">
     <div class="stat-item">
@@ -608,7 +728,7 @@
     </div>
   </div>
 
-  <!-- MEMORIES -->
+  <!-- MEMORIES / TOOLS -->
   <section class="tools fade-in">
     <div class="section-label">同學服務</div>
     <h2 class="section-title">同學會專區</h2>
@@ -690,7 +810,6 @@
     <div class="footer-bottom">
       <span>© 2026 衛道同學會 版權所有</span>
       <span>同學情，永不忘 ❤️</span>
-      
     </div>
   </footer>
 
